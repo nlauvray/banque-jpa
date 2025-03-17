@@ -8,15 +8,12 @@ import jakarta.persistence.Table;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@Table(name = "Virement", schema = "banque", catalog = "banque")
+@Table(name = "Virement")
 public class Virement extends Operation {
     private String beneficiaire;
-    private String remboursement;
-
-    private Long id;
 
     @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "account_id")
     private Operation operation;
 
 
@@ -26,14 +23,6 @@ public class Virement extends Operation {
 
     public void setBeneficiary(String beneficiaire) {
         this.beneficiaire = beneficiaire;
-    }
-
-    public String getRemboursement() {
-        return remboursement;
-    }
-
-    public void setRemboursement(String remboursement) {
-        this.remboursement = remboursement;
     }
 
 }

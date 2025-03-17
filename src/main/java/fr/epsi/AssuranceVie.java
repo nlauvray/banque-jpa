@@ -7,8 +7,7 @@ import java.time.LocalDate;
 
 @Entity
 public class AssuranceVie extends Account {
-    private LocalDate dateFin;
-    private double taux;
+
     @Id
     private Long id;
 

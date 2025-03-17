@@ -21,8 +21,8 @@ public class Main {
         Account compte1 = new Courant();
         compte1.setNumero("12345");
         compte1.setSolde(1000.0);
-        client1.getAccount(compte1);
-        client2.getAccount(compte1);
+        client1.addAccount(compte1);
+        client2.addAccount(compte1);
 
         em.persist(client1);
         em.persist(client2);
@@ -37,8 +37,8 @@ public class Main {
         assuranceVie.setNumero("54321");
         assuranceVie.setSolde(5000.0);
 
-        client3.getAccount(livretA);
-        client3.getAccount(assuranceVie);
+        client3.addAccount(livretA);
+        client3.addAccount(assuranceVie);
 
         em.persist(client3);
         em.persist(livretA);
@@ -50,6 +50,8 @@ public class Main {
         virement.setDate(LocalDateTime.now());
         virement.setBeneficiary("Paul");
         virement.setAccount(compte1);
+
+        em.getTransaction().begin();
 
         em.persist(virement);
 

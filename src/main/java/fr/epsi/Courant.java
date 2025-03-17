@@ -5,7 +5,6 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Courant extends Account {
-    private double decouvert;
     @Id
     private Long id;
 

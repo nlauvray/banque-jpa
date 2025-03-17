@@ -3,22 +3,20 @@ package fr.epsi;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private double montant;
-    private String motif;
-    private LocalDateTime date;
 
-    @OneToOne
-    private Address adresse;
+    @ManyToMany
+    private List<Account> accounts = new ArrayList<>();
 
-    public Calendar getAccount(Account compte1) {
-        return null;
+    public void addAccount(Account account) {
+        this.accounts.add(account);
     }
 }
 

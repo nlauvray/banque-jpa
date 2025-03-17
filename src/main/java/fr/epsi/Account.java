@@ -3,21 +3,23 @@ package fr.epsi;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
-
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Account {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "DTYPE", discriminatorType = DiscriminatorType.STRING)
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String numero;
-    private double solde;
 
-    public void setNumero(String number) {
+    private float solde;
+
+    private String numero;
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
-    public void setSolde(double sold) {
-    }
-    public void getAccount(int number) {
+    public void setSolde(double solde) {
+        this.solde = (float) solde;
     }
 }
 
