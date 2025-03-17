@@ -1,19 +1,13 @@
 package fr.epsi;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-public class Main {
+public class TestBanque {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("banque-jpa");
         EntityManager em = emf.createEntityManager();
-        try{
-            System.out.println("Connection 👌");
-        }catch(Exception e){
-            System.out.println("pas ok");
-        }
+        em.getTransaction().begin();
 
         Client client1 = new Client();
         Client client2 = new Client();
