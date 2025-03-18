@@ -1,25 +1,29 @@
 package fr.epsi;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.*;
 
 @Entity
-// @PrimaryKeyJoinColumn(name = "id")
 public class LivretA extends Account {
-    @Id
-    private Long id;
 
-    @JoinColumn(name = "account_id")
-    private Integer account_id;
+    @Column(name = "taux")
+    private double taux;
 
-    public void setId(Long id) {
-        this.id = id;
+    public LivretA(String numero, double solde, double taux) {
+        super(numero, solde);
+        this.taux = taux;
     }
 
-    public Long getId() {
-        return id;
+    public double getTaux() {
+        return taux;
+    }
+    public void setTaux(double taux) {
+        this.taux = taux;
+    }
+
+    public LivretA() {}
+
+    public LivretA(String numero, double solde) {
+        super(numero, solde);
+        this.taux = taux;
     }
 }

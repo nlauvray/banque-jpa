@@ -1,48 +1,70 @@
 package fr.epsi;
-
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "Operation")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Operation {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int id;
 
-    private double montant;
+    @Column(name = "motif")
     private String motif;
-    private LocalDateTime date;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(name = "date")
+    private LocalDate dateOpe;
 
-    public double getMontant() {
-        return montant;
-    }
+    @ManyToOne
+    @JoinColumn(name = "compte_id")
+    private Account compte;
 
-    public void setMontant(double montant) {
-        this.montant = montant;
+
+    public double montant;
+
+    public int getId() {
+        return id;
     }
 
     public String getMotif() {
         return motif;
     }
 
+    public LocalDate getDate() {
+        return dateOpe;
+    }
+
+    public Account getCompte() {
+        return compte;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setMotif(String motif) {
         this.motif = motif;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public void setDate(LocalDate date) {
+        this.dateOpe = dateOpe;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setCompte(Account Account) {
+        this.compte = Account;
     }
 
-    public void setAccount(Account compte1) {
+    public Operation(LocalDateTime dateOpe, double montant, Account compte) {
+        this.dateOpe = LocalDate.from(dateOpe);
+        this.montant = montant;
+        this.compte = compte;
     }
+
+    public Operation() {}
 
 }

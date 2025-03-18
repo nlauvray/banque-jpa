@@ -1,18 +1,25 @@
 package fr.epsi;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
-public class Courant extends Account {
-    @Id
-    private Long id;
+@Table(name = "Courant")
+public class Courant extends Account{
+    @Column(name = "decouvert")
+    private double decouvert;
 
-    public void setId(Long id) {
-        this.id = id;
+    public double getDecouvert() {
+        return decouvert;
     }
 
-    public Long getId() {
-        return id;
+    public void setDecouvert(double decouvert) {
+        this.decouvert = decouvert;
     }
+
+    public Courant(String numero, double solde, double decouvert) {
+        super(numero, solde);
+        this.decouvert = decouvert;
+    }
+    public Courant() {}
+
 }
